@@ -1,0 +1,33 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class studentGradeBook {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of students: ");
+        int numStudents = scanner.nextInt();
+        System.out.print("Enter the number of assignments: ");
+        int numAssignments = scanner.nextInt();
+
+        String[] names = new String[numStudents];
+        double[] averageScores = new double[numStudents];
+
+        for (int i = 0; i < numStudents; i++) {
+            System.out.print("Enter student name: ");
+            names[i] = scanner.next();
+            
+            int sum = 0;
+            for (int j = 0; j < numAssignments; j++) {
+                System.out.print("Enter grade for assignment " + (j + 1) + ": ");
+                sum += scanner.nextInt();
+            }
+            averageScores[i] = (double) sum / numAssignments;
+        }
+
+        System.out.println("\nStudent Averages:");
+        for (int i = 0; i < numStudents; i++) {
+            System.out.printf("%s: %.2f\n", names[i], averageScores[i]);
+        }
+    }
+}
