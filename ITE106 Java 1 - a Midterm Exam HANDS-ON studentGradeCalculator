@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class studentGradeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of students: ");
+        int numStudents = scanner.nextInt();
+        String[] studentNames = new String[numStudents];
+        double[][] studentScores = new double[numStudents][];
+
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println("Student " + (i + 1));
+            System.out.print("Enter name: ");
+            studentNames[i] = scanner.next();
+
+            System.out.print("Enter the number of assignments: ");
+            int numAssignments = scanner.nextInt();
+
+            studentScores[i] = new double[numAssignments];
+
+            for (int j = 0; j < numAssignments; j++) {
+                System.out.print("Enter score for assignment " + (j + 1) + ": ");
+                studentScores[i][j] = scanner.nextDouble();
+            }
+        }
+
+        double[] averageScores = new double[numStudents];
+        char[] grades = new char[numStudents];
+
+        for (int i = 0; i < numStudents; i++) {
+            double sum = 0;
+            for (int j = 0; j < studentScores[i].length; j++) {
+                sum += studentScores[i][j];
+            }
+            averageScores[i] = sum / studentScores[i].length;
+
+            if (averageScores[i] >= 90) {
+                grades[i] = 'A';
+            } else if (averageScores[i] >= 80) {
+                grades[i] = 'B';
+            } else if (averageScores[i] >= 70) {
+                grades[i] = 'C';
+            } else if (averageScores[i] >= 60) {
+                grades[i] = 'D';
+            } else {
+                grades[i] = 'F';
+            }
+        }
+
+        System.out.println("\nStudent Information:");
+        System.out.println("------------------");
+        System.out.println("Name\tAverage\tGrade");
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println(studentNames[i] + "\t" + averageScores[i] + "\t" + grades[i]);
+        }
+    }
+}
